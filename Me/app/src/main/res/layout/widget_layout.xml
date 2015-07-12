@@ -7,8 +7,6 @@
         android:id="@+id/widget_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/widget_font_color"
-        android:background="@color/widget_bg_color"
-        android:text="@string/hello_world"/>
+        android:text="Hello world!"/>
 
 </RelativeLayout>
