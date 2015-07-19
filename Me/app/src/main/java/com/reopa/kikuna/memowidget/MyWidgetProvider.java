@@ -6,13 +6,9 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.widget.RemoteViews;
-import android.widget.TextView;
 
-import com.reopa.kikuna.memowidget.dao.MemosDao;
 import com.reopa.kikuna.memowidget.entity.MemosEntity;
-import com.reopa.kikuna.memowidget.manager.DBManager;
 
 import java.util.List;
 
@@ -100,18 +96,16 @@ public class MyWidgetProvider extends AppWidgetProvider {
     }
 
     private static void changeWidgetText(Context context) {
-        // Get DB data..
-        DBManager dbManager = DBManager.getDBManager(context);
-        SQLiteDatabase db = dbManager.getReadableDatabase();
-
-        MemosDao dao = new MemosDao(db);
-        dao.insert("test"); // TODO とりあえず。メモ保存できるようになったら消す。
-        List<MemosEntity> entityList = dao.findAll();
+        List<MemosEntity> entityList = MemosUtils.getLatestMemosFromDb(context);
 
         if (entityList.size() > 0) {
             String viewMemoText = entityList.get(0).getMemoText();
             remoteViews.setTextViewText(R.id.widget_text, viewMemoText);
         }
+    }
+
+    public static void updateWidget(Context context) {
+      pushWidgetUpdate(context, remoteViews);
     }
 
 }

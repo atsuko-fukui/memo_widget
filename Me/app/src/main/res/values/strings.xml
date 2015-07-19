@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">MemoWidget</string>
+    <string name="confirm_delete">Delete this memo?</string>
+    <string name="new_memo">New memo</string>
+    <string name="new_memo_hint">Enter here</string>
+    <string name="save">Save</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
