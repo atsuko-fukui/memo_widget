@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    // Set MainActivity background.
+    setActivityBackGround();
+
     mMemosListFragment = (MemosListFragment) getFragmentManager().findFragmentById(R.id.memos_list_fragment);
     FloatingActionButton floatingActionButton =
             (FloatingActionButton) findViewById(R.id.floating_action_button);
@@ -65,5 +70,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+
+  private void setActivityBackGround() {
+    RelativeLayout layout = (RelativeLayout) findViewById(R.id.main_activity);
+    layout.setBackgroundResource(R.drawable.bg_cork);
   }
 }
