@@ -73,8 +73,7 @@ public class MemoListAdapter extends ArrayAdapter<MemosEntity> {
         view.setText(text);
 
         // Create a randam number to select a background image.
-        Random r = new Random();
-        int num = r.nextInt(ID_DRAWABLE_MEMO_BG.length);
+        int num = text.length() % 4;
         view.setBackgroundResource(ID_DRAWABLE_MEMO_BG[num]);
     }
 }

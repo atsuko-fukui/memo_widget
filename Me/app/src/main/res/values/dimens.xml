@@ -5,4 +5,7 @@
 
     <dimen name="widget_width">146dp</dimen>
     <dimen name="widget_height">72dp</dimen>
+    <dimen name="widget_husen_width">100dp</dimen>
+    <dimen name="widget_husen_height">36dp</dimen>
+
 </resources>
