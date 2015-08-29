@@ -2,20 +2,14 @@ package com.reopa.kikuna.memowidget;
 
 import android.app.AlertDialog;
 import android.app.ListFragment;
-import android.content.ClipData;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import com.reopa.kikuna.memowidget.entity.MemosEntity;
 import com.reopa.kikuna.memowidget.adapter.MemoListAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,6 +53,7 @@ public class MemosListFragment extends ListFragment {
                 builder.create().show();
             }
         });
+
         MyWidgetProvider.updateWidget(getActivity());
     }
 }
