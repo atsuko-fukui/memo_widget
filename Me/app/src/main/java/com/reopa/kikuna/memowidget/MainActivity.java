@@ -13,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import com.reopa.kikuna.memowidget.dao.MemosDao;
+
 public class MainActivity extends AppCompatActivity {
 
   MemosListFragment mMemosListFragment;
@@ -98,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
             new DialogInterface.OnClickListener() {
               @Override
               public void onClick(DialogInterface dialog, int which) {
-                MemosUtils.insertMemo(editText.getText().toString(), MainActivity.this);
+                MemosDao dao = new MemosDao(MainActivity.this);
+                dao.insert(editText.getText().toString());
                 mMemosListFragment.updateList();
               }
             });

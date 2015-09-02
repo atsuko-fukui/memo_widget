@@ -29,6 +29,14 @@ public class DBManager extends SQLiteOpenHelper {
         return sDbManager;
     }
 
+    public static SQLiteDatabase getReadableDb() {
+        return sDbManager.getReadableDatabase();
+    }
+
+    public static SQLiteDatabase getWritableDb() {
+        return sDbManager.getWritableDatabase();
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_SQL);

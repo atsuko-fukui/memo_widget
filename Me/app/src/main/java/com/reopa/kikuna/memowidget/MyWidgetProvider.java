@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
+import com.reopa.kikuna.memowidget.dao.MemosDao;
 import com.reopa.kikuna.memowidget.entity.MemosEntity;
 
 import java.util.ArrayList;
@@ -104,7 +105,8 @@ public class MyWidgetProvider extends AppWidgetProvider {
     }
 
     private static void changeWidgetText(Context context) {
-        List<MemosEntity> entityList = MemosUtils.getLatestMemosFromDb(context);
+        MemosDao dao = new MemosDao(context);
+        List<MemosEntity> entityList = dao.findAll();
         if (entityList.size() > 0) {
             String viewMemoText = entityList.get(0).getMemoText();
             remoteViews.setTextViewText(R.id.widget_text, viewMemoText);

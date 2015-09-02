@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/detail_copy"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:background="#00000000"
+        android:src="@drawable/ic_copy" />
+
+    <ImageButton
+        android:id="@+id/detail_edit"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:background="#00000000"
+        android:src="@drawable/ic_edit" />
+
+    <ImageButton
+        android:id="@+id/detail_delete"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:background="#00000000"
+        android:src="@drawable/ic_delete" />
+
+</LinearLayout>

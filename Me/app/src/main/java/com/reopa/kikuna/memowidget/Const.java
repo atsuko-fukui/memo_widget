@@ -7,7 +7,7 @@ public final class Const {
     private Const(){}
 
     public static final String ACT_TAP_WIDGET = "act_tap_widget";
-    public static enum ActTapWidget {
+    public enum ActTapWidget {
         KIND_NORMAL, KIND_ADD
     }
 
