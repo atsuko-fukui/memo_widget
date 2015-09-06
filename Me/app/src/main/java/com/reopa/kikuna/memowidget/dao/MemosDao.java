@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class MemosDao {
 
+
     public static final String TABLE_NAME = "memos";
 
     public static final String COLUMN_ID = "id";
@@ -28,15 +29,15 @@ public class MemosDao {
 
     public MemosDao(Context context) {
         this.dbManager = DBManager.getDBManager(context);
-        this.readDb = dbManager.getReadableDb();
-        this.writeDb = dbManager.getWritableDb();
+        this.readDb = DBManager.getReadableDb();
+        this.writeDb = DBManager.getWritableDb();
     }
 
     public List<MemosEntity> findAll() {
         List<MemosEntity> entityList = new ArrayList<MemosEntity>();
         Cursor cursor = readDb.query(TABLE_NAME, COLUMNS, null, null, null, null, COLUMN_ID);
 
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             MemosEntity entity = new MemosEntity();
             entity.setId(cursor.getInt(0));
             entity.setMemoText(cursor.getString(1));

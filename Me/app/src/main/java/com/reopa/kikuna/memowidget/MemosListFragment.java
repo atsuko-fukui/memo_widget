@@ -216,6 +216,7 @@ public class MemosListFragment extends ListFragment {
             });
 
         }
+
         /**
          * Create memo delete dialog.
          */
