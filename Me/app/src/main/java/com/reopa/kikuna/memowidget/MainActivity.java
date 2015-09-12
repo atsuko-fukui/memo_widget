@@ -13,98 +13,102 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import com.reopa.kikuna.memowidget.dao.MemosDao;
+
 public class MainActivity extends AppCompatActivity {
 
-  MemosListFragment mMemosListFragment;
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+    MemosListFragment mMemosListFragment;
 
-    // init MainActivity (background image etc.).
-    initActivity();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    // Create MemoListFragment Object.
-    mMemosListFragment = (MemosListFragment) getFragmentManager().findFragmentById(R.id.memos_list_fragment);
+        // init MainActivity (background image etc.).
+        initActivity();
 
-    // Create and set listener FAB.
-    FloatingActionButton floatingActionButton =
-            (FloatingActionButton) findViewById(R.id.floating_action_button);
-    floatingActionButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        viewAddDialog();
-      }
-    });
-  }
+        // Create MemoListFragment Object.
+        mMemosListFragment = (MemosListFragment) getFragmentManager().findFragmentById(R.id.memos_list_fragment);
 
-  @Override
-  protected void onResume() {
-    super.onResume();
-    Intent intent = getIntent();
-    Const.ActTapWidget localAction = (Const.ActTapWidget) intent.getSerializableExtra(Const.ACT_TAP_WIDGET);
-
-    if (localAction != null) {
-      switch (localAction) {
-        case KIND_ADD:
-          viewAddDialog();
-          break;
-        case KIND_NORMAL:
-        default:
-          break;
-      }
-    }
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.menu_main, menu);
-
-    return true;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
-
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
+        // Create and set listener FAB.
+        FloatingActionButton floatingActionButton =
+                (FloatingActionButton) findViewById(R.id.floating_action_button);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewAddDialog();
+            }
+        });
     }
 
-    return super.onOptionsItemSelected(item);
-  }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        Const.ActTapWidget localAction = (Const.ActTapWidget) intent.getSerializableExtra(Const.ACT_TAP_WIDGET);
 
-  /**
-   * Initialize MainActivity background Image.
-   */
-  private void initActivity() {
-    setContentView(R.layout.activity_main);
+        if (localAction != null) {
+            switch (localAction) {
+                case KIND_ADD:
+                    viewAddDialog();
+                    break;
+                case KIND_NORMAL:
+                default:
+                    break;
+            }
+        }
+    }
 
-    RelativeLayout layout = (RelativeLayout) findViewById(R.id.main_activity);
-    layout.setBackgroundResource(R.drawable.bg_cork);
-  }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
 
-  private void viewAddDialog() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-    final EditText editText = new EditText(MainActivity.this);
-    editText.setHint(R.string.new_memo_hint);
-    builder.setTitle(R.string.new_memo);
-    builder.setView(editText);
-    builder.setPositiveButton(R.string.save,
-            new DialogInterface.OnClickListener() {
-              @Override
-              public void onClick(DialogInterface dialog, int which) {
-                MemosUtils.insertMemo(editText.getText().toString(), MainActivity.this);
-                mMemosListFragment.updateList();
-              }
-            });
-    AlertDialog dialog = builder.create();
-    dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-    dialog.show();
+        return true;
+    }
 
-  }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Initialize MainActivity background Image.
+     */
+    private void initActivity() {
+        setContentView(R.layout.activity_main);
+
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.main_activity);
+        layout.setBackgroundResource(R.drawable.bg_cork);
+    }
+
+    private void viewAddDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        final EditText editText = new EditText(MainActivity.this);
+        editText.setHint(R.string.new_memo_hint);
+        builder.setTitle(R.string.new_memo);
+        builder.setView(editText);
+        builder.setPositiveButton(R.string.save,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MemosDao dao = new MemosDao(MainActivity.this);
+                        dao.insert(editText.getText().toString());
+                        mMemosListFragment.updateList();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
+
+    }
 }

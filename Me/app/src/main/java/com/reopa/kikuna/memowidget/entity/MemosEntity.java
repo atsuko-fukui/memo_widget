@@ -1,7 +1,6 @@
 package com.reopa.kikuna.memowidget.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by arthurvc on 2015/07/12.
@@ -39,7 +38,7 @@ public class MemosEntity implements Serializable {
         StringBuffer sb = new StringBuffer(this.getClass().toString());
         sb.append("[");
         sb.append("ID").append(getId());
-        sb.append("MemoText").append(getMemoText());
+        sb.append(", MemoText").append(getMemoText());
         sb.append("]");
         return sb.toString();
     }

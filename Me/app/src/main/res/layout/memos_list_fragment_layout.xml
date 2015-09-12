@@ -2,16 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="10dp" >
+    android:orientation="horizontal"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/memo_text"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:padding="10dp" />
+        android:layout_weight="9"
+        android:clickable="true"
+        android:padding="8dp" />
 
+    <ImageButton
+        android:id="@+id/memo_detail_button"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/memo_line_height"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:src="@drawable/ic_detail" />
 </LinearLayout>
