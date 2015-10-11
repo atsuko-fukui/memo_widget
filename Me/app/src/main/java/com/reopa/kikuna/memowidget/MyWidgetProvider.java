@@ -65,7 +65,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
         MemosDao dao = new MemosDao(context);
         List<MemosEntity> entityList = dao.findAll();
         if (entityList.size() > 0) {
-            String viewMemoText = entityList.get(0).getMemoText();
+            String viewMemoText = entityList.get(entityList.size() - 1).getMemoText();
             remoteViews.setTextViewText(R.id.widget_text, viewMemoText);
         }
     }
