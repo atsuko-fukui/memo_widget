@@ -106,7 +106,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
     private static void changeWidgetText(Context context) {
         List<MemosEntity> entityList = MemosUtils.getLatestMemosFromDb(context);
         if (entityList.size() > 0) {
-            String viewMemoText = entityList.get(0).getMemoText();
+            String viewMemoText = entityList.get(entityList.size() - 1).getMemoText();
             remoteViews.setTextViewText(R.id.widget_text, viewMemoText);
         }
     }
