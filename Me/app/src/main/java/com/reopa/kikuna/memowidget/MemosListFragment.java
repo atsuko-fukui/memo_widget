@@ -45,34 +45,6 @@ public class MemosListFragment extends ListFragment {
         MemoListAdapter adapter = new MemoListAdapter(getActivity());
         setListAdapter(adapter);
 
-        // リスト内各ViewのonClick()イベントを検知したい為、リスナの設定処理をMemoListAdapter.getView()に移動
-        /*
-        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> items, View view, int position, long id) {
-                final int selectedItemId = entityList.get(position).getId();
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setMessage(R.string.confirm_delete);
-                builder.setPositiveButton(android.R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                MemosUtils.deleteMemoById(selectedItemId, getActivity());
-                                updateList();
-                            }
-                        });
-                builder.setNegativeButton(android.R.string.cancel,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                builder.create().show();
-            }
-        });
-        */
-
         MyWidgetProvider.updateWidget(getActivity());
     }
 
