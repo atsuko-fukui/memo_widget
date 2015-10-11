@@ -64,10 +64,11 @@ public class MyWidgetProvider extends AppWidgetProvider {
     private static void changeWidgetText(Context context) {
         MemosDao dao = new MemosDao(context);
         List<MemosEntity> entityList = dao.findAll();
+        String viewMemoText = "";
         if (entityList.size() > 0) {
-            String viewMemoText = entityList.get(entityList.size() - 1).getMemoText();
-            remoteViews.setTextViewText(R.id.widget_text, viewMemoText);
+            viewMemoText = entityList.get(entityList.size() - 1).getMemoText();
         }
+        remoteViews.setTextViewText(R.id.widget_text, viewMemoText);
     }
 
     /**
